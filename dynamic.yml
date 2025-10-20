@@ -1,0 +1,18 @@
+http:
+  routers:
+    my-router:
+      rule: Host(`localhost`)
+      service: my-service
+      middlewares:
+        - hello-middleware
+
+  services:
+    my-service:
+      loadBalancer:
+        servers:
+          - url: http://backend:8080
+
+  middlewares:
+    hello-middleware:
+      plugin:
+        helloworld: {}
